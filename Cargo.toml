@@ -1,0 +1,51 @@
+[package]
+name = "colormel"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.86"
+rust-ini = "0.21.1"
+
+[dependencies.windows]
+version = "0.58.0"
+features = [
+    "implement",
+    "Foundation_Numerics",
+    "Win32_Graphics_Direct3D",
+    "Win32_Graphics_Direct3D11",
+    "Win32_Graphics_Direct3D12",
+    "Win32_Graphics_Dwm",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Dxgi_Common",
+    "Win32_Graphics_Gdi",
+    "Win32_Security",
+    "Win32_System_Com",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading",
+    "Win32_System_WinRT",
+    "Win32_System_WinRT_Composition",
+    "Win32_System_SystemServices",
+    "Win32_UI_Controls",
+    "Win32_UI_HiDpi",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_WindowsAndMessaging",
+    "System",
+    "UI_Composition",
+    "UI_Composition_Desktop",
+]
+
+[build-dependencies]
+anyhow = "1.0.86"
+winres = "0.1.12"
+
+[build-dependencies.windows]
+version = "0.58.0"
+features = [
+    "implement",
+    "Win32_Graphics_Direct3D",
+    "Win32_Graphics_Direct3D_Dxc",
+    "Win32_System_Com",
+]
