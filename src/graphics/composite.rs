@@ -12,7 +12,7 @@ use windows::{
             DQTYPE_THREAD_CURRENT,
         },
     },
-    UI::Composition::{Compositor, Desktop::DesktopWindowTarget},
+    UI::Composition::{CompositionStretch, Compositor, Desktop::DesktopWindowTarget},
 };
 
 pub struct CompositionHost {
@@ -57,6 +57,7 @@ impl CompositionHost {
                 interop.CreateCompositionSurfaceForSwapChain(swap_chain)?
             };
             let brush = self.compositor.CreateSurfaceBrushWithSurface(&surface)?;
+            brush.SetStretch(CompositionStretch::UniformToFill)?;
 
             content.SetRelativeSizeAdjustment(Vector2::one())?;
             content.SetBrush(&brush)?;
