@@ -18,7 +18,7 @@ impl Fence {
         unsafe {
             let fence = device.CreateFence(0, D3D12_FENCE_FLAG_NONE)?;
             let fence_value = 1;
-            let fence_event = CreateEventA(None, FALSE, FALSE, None)?;
+            let fence_event = CreateEventA(None, false, false, None)?;
 
             Ok(Self {
                 fence,

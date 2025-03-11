@@ -1,10 +1,13 @@
 use anyhow::Result;
 use windows::{
     core::Interface,
-    Win32::Graphics::{
-        Direct3D::*,
-        Direct3D11::*,
-        Dxgi::{Common::*, *},
+    Win32::{
+        Foundation::HMODULE,
+        Graphics::{
+            Direct3D::*,
+            Direct3D11::*,
+            Dxgi::{Common::*, *},
+        },
     },
 };
 
@@ -37,7 +40,7 @@ impl Duplication {
             D3D11CreateDevice(
                 adapter,
                 D3D_DRIVER_TYPE_UNKNOWN,
-                None,
+                HMODULE::default(),
                 flags,
                 Some(&[D3D_FEATURE_LEVEL_11_0]),
                 D3D11_SDK_VERSION,

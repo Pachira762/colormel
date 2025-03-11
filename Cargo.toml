@@ -6,13 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-anyhow = "1.0.89"
-rust-ini = "0.21.1"
+anyhow = "1.0"
+rust-ini = "0.21"
+windows-numerics = "=0.1"
 
 [dependencies.windows]
-version = "0.58.0"
+version = "0.60"
 features = [
-    "implement",
     "Foundation_Numerics",
     "Win32_Graphics_Direct3D",
     "Win32_Graphics_Direct3D11",
@@ -38,13 +38,12 @@ features = [
 ]
 
 [build-dependencies]
-anyhow = "1.0.86"
-winres = "0.1.12"
+anyhow = "1.0"
+winres = "0.1"
 
 [build-dependencies.windows]
-version = "0.58.0"
+version = "0.60"
 features = [
-    "implement",
     "Win32_Graphics_Direct3D",
     "Win32_Graphics_Direct3D_Dxc",
     "Win32_System_Com",

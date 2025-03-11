@@ -47,7 +47,7 @@ impl<T: App> Viewer<T> {
             utils::register_window_class(
                 CS_HREDRAW | CS_VREDRAW,
                 Some(wndproc::<Self>),
-                Some(LoadIconW(module_handle(), PCWSTR(1 as _))?),
+                Some(LoadIconW(Some(module_handle()), PCWSTR(1 as _))?),
                 None,
                 None,
                 CLASS_NAME,

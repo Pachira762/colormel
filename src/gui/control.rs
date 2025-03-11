@@ -345,8 +345,8 @@ impl Builder {
             y,
             width,
             height,
-            self.parent,
-            HMENU(id as _),
+            Some(self.parent),
+            Some(HMENU(id as _)),
             None,
         )?;
 

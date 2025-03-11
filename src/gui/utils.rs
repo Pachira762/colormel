@@ -168,7 +168,7 @@ pub fn register_window_class(
 }
 
 #[allow(clippy::too_many_arguments)]
-pub fn create_window<P0: Param<HWND>, P1: Param<HMENU>>(
+pub fn create_window(
     ex_style: WINDOW_EX_STYLE,
     class_name: PCSTR,
     window_name: PCSTR,
@@ -177,8 +177,8 @@ pub fn create_window<P0: Param<HWND>, P1: Param<HMENU>>(
     y: i32,
     width: i32,
     height: i32,
-    parent: P0,
-    menu: P1,
+    parent: Option<HWND>,
+    menu: Option<HMENU>,
     param: Option<*const std::ffi::c_void>,
 ) -> Result<HWND> {
     unsafe {
@@ -193,7 +193,7 @@ pub fn create_window<P0: Param<HWND>, P1: Param<HMENU>>(
             height,
             parent,
             menu,
-            module_handle(),
+            Some(module_handle()),
             param,
         )
         .map_err(E::msg)
@@ -213,7 +213,7 @@ pub fn adjust_window_rect(
             right: width as i32,
             bottom: height as i32,
         };
-        AdjustWindowRectEx(&mut rc, style, None, ex_style)
+        AdjustWindowRectEx(&mut rc, style, false, ex_style)
             .expect("failed to adjust window rect ex.");
         rc
     }

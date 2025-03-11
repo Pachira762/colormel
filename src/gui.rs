@@ -1,10 +1,12 @@
 use anyhow::Result;
-use windows::Win32::{
-    Foundation::BOOL,
-    System::WinRT::{RoInitialize, RoUninitialize, RO_INIT_MULTITHREADED},
-    UI::{
-        Controls::{InitCommonControlsEx, ICC_WIN95_CLASSES, INITCOMMONCONTROLSEX},
-        WindowsAndMessaging::{DispatchMessageA, GetMessageA, TranslateMessage, MSG},
+use windows::{
+    core::BOOL,
+    Win32::{
+        System::WinRT::{RoInitialize, RoUninitialize, RO_INIT_MULTITHREADED},
+        UI::{
+            Controls::{InitCommonControlsEx, ICC_WIN95_CLASSES, INITCOMMONCONTROLSEX},
+            WindowsAndMessaging::{DispatchMessageA, GetMessageA, TranslateMessage, MSG},
+        },
     },
 };
 

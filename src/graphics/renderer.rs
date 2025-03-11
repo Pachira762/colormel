@@ -58,7 +58,7 @@ impl Renderer {
             for rtv in rtvs {
                 command_list.ClearRenderTargetView(rtv, clear_color, None);
             }
-            command_list.ClearDepthStencilView(dsv, D3D12_CLEAR_FLAG_DEPTH, 1.0, 0, &[]);
+            command_list.ClearDepthStencilView(dsv, D3D12_CLEAR_FLAG_DEPTH, 1.0, 0, None);
 
             let (width, height) = render_target.buffer.size();
             let adjusted = width.max(height) as f32;

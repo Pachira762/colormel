@@ -1,7 +1,6 @@
 use anyhow::Result;
 use windows::{
     core::Interface,
-    Foundation::Numerics::Vector2,
     System::{DispatcherQueue, DispatcherQueueController},
     Win32::{
         Foundation::HWND,
@@ -14,6 +13,7 @@ use windows::{
     },
     UI::Composition::{CompositionStretch, Compositor, Desktop::DesktopWindowTarget},
 };
+use windows_numerics::Vector2;
 
 pub struct CompositionHost {
     #[allow(unused)]

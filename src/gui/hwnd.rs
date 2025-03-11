@@ -118,7 +118,7 @@ pub trait Hwnd: Copy + Into<HWND> {
 
     fn post_message(self, msg: u32, wp: WPARAM, lp: LPARAM) {
         unsafe {
-            PostMessageA(self.into(), msg, wp, lp);
+            PostMessageA(Some(self.into()), msg, wp, lp);
         }
     }
 
@@ -158,7 +158,7 @@ pub trait Hwnd: Copy + Into<HWND> {
 
     fn set_timer(self, id: usize, elapse: u32) {
         unsafe {
-            SetTimer(self.into(), id, elapse, None);
+            SetTimer(Some(self.into()), id, elapse, None);
         }
     }
 
@@ -222,7 +222,7 @@ pub trait Hwnd: Copy + Into<HWND> {
                 info.nTrackPos = track;
             }
 
-            SetScrollInfo(self.into(), bar, &info, TRUE)
+            SetScrollInfo(self.into(), bar, &info, true)
         }
     }
 

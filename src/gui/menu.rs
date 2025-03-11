@@ -56,7 +56,7 @@ impl Menu {
                 0,
                 0,
                 0,
-                parent,
+                Some(parent),
                 None,
                 None,
             )?;
