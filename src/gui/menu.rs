@@ -15,7 +15,7 @@ use windows::{
     },
 };
 
-use crate::{cast, gui::hwnd::Hwnd};
+use crate::gui::hwnd::Hwnd;
 
 use super::{
     control::Builder,
@@ -99,7 +99,7 @@ impl Menu {
             cx: width,
             cy: height,
             ..
-        } = *cast!(lp.0, WINDOWPOS);
+        } = unsafe { *(lp.0 as *const _) };
 
         self.hittest.update(x, y, width, height);
         self.scrollbar.set_page_size(height as _);
@@ -130,7 +130,7 @@ impl Menu {
     }
 
     fn on_notify(&mut self, _wp: WPARAM, lp: LPARAM) -> Option<LRESULT> {
-        let nmc = cast!(lp.0, NMCUSTOMDRAW);
+        let mut nmc = unsafe { *(lp.0 as *const NMCUSTOMDRAW) };
 
         if nmc.hdr.code == NM_CUSTOMDRAW
             && nmc.dwDrawStage == CDDS_PREPAINT

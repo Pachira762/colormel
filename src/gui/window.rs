@@ -1,8 +1,6 @@
 use anyhow::Result;
 use windows::Win32::{Foundation::*, UI::WindowsAndMessaging::*};
 
-use crate::cast;
-
 use super::{hwnd::Hwnd, utils::quit};
 
 pub trait Window: Sized {
@@ -32,7 +30,9 @@ pub unsafe extern "system" fn wndproc<T: Window>(
 
 fn default_window_proc<T: Window>(hwnd: HWND, msg: u32, wp: WPARAM, lp: LPARAM) -> LRESULT {
     match msg {
-        WM_NCCREATE => match T::new(hwnd, cast!(lp.0, CREATESTRUCTA)) {
+        WM_NCCREATE => match T::new(hwnd, unsafe {
+            (lp.0 as *mut CREATESTRUCTA).as_mut().unwrap()
+        }) {
             Ok(window) => {
                 let window = Box::leak(window);
                 hwnd.set_user_data(window as *mut _ as _);

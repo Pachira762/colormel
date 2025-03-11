@@ -18,7 +18,6 @@ use crate::{
     graphics::{
         core::{pso::PipelineState, wrap::*},
         initializer::Initializer,
-        math,
         renderer::Renderer,
         resource::RwBuffer,
     },
@@ -88,8 +87,8 @@ impl ColorCloud {
         }
 
         const THREAD: u32 = 8;
-        let dim_x = math::div_round_up(config.window_rect.width() as u32, THREAD);
-        let dim_y = math::div_round_up(config.window_rect.height() as u32, THREAD);
+        let dim_x = (config.window_rect.width() as u32).div_ceil(THREAD);
+        let dim_y = (config.window_rect.height() as u32).div_ceil(THREAD);
 
         let params = Params {
             rect: config.window_rect,

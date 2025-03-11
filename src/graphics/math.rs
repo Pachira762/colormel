@@ -1,9 +1,5 @@
 #![allow(unused)]
 
-pub fn div_round_up(num: u32, div: u32) -> u32 {
-    (num + div - 1) / div
-}
-
 #[repr(transparent)]
 #[derive(Clone, Copy, Default, Debug)]
 pub struct Vec4(pub [f32; 4]);

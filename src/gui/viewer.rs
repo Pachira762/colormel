@@ -13,7 +13,6 @@ use windows::{
 };
 
 use crate::{
-    cast,
     gui::utils::{self, module_handle},
     GET_X_LPARAM, GET_Y_LPARAM,
 };
@@ -153,7 +152,7 @@ impl<T: App> Viewer<T> {
             cx: width,
             cy: height,
             ..
-        } = *cast!(lp.0, WINDOWPOS);
+        } = unsafe { *(lp.0 as *const _) };
 
         self.hittest.update(x, y, width, height);
         self.menu.adjust_rect(x, y, width, height);

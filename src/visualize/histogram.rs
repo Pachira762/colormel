@@ -16,7 +16,6 @@ use crate::{
             wrap::{BlendDesc, DepthStencilDesc, RasterizerDesc, RtvFormats},
         },
         initializer::Initializer,
-        math,
         renderer::Renderer,
         resource::RwBuffer,
     },
@@ -120,8 +119,8 @@ impl Histogram {
 
         let threads = 2 * 8;
         ctx.dispatch(
-            math::div_round_up(config.window_rect.width() as u32, threads),
-            math::div_round_up(config.window_rect.height() as u32, threads),
+            (config.window_rect.width() as u32).div_ceil(threads),
+            (config.window_rect.height() as u32).div_ceil(threads),
             1,
         );
 
